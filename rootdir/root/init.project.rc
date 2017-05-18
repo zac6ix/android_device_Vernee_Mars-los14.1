@@ -6,17 +6,6 @@ on init
     mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
     mkdir /storage/usbotg 0700 root root
 
-#Gionee <duanyh> <2016-1-20> modify for KPH begin
-    mkdir /data/app/mcRegistry 0775 system system
-    mkdir /data/app/mcRegistry/TbStorage 0775 system system
-    chmod 0600 /dev/mobicore
-    chown system system /dev/mobicore
-    chmod 0666 /dev/mobicore-user
-    chown system system /dev/mobicore-user
-    # MobiCore Daemon Paths
-    export MC_AUTH_TOKEN_PATH /efs
-    start mobicore
-
 on post-fs-data
 
 #
@@ -68,20 +57,17 @@ on post-fs-data
 
     chmod 0660 /dev/DW9714AF
     chown system camera /dev/DW9714AF
-
-    chmod 0660 /dev/DW9800WAF
-    chown system camera /dev/DW9800WAF
+    chmod 0660 /dev/DW9763AF
+    chown system camera /dev/DW9763AF
+    chmod 0660 /dev/BU64244GWZAF
+    chown system camera /dev/BU64244GWZAF
 
     chmod 0660 /dev/LC898212AF
     chown system camera /dev/LC898212AF
 
-    chmod 0666 /sys/class/flashlightdrv/kd_camera_flashlight/torch 
-    chown system camera /sys/class/flashlightdrv/kd_camera_flashlight/torch 
-
     chmod 0660 /dev/BU64745GWZAF
     chown system camera /dev/BU64745GWZAF
 
-chmod 0666 /dev/i2c-3
 #SMB
     chown system system /proc/smb/ScreenComm
     chmod 0660 /proc/smb/ScreenComm
@@ -127,9 +113,6 @@ chmod 0666 /dev/i2c-3
 #    chmod 0660 /dev/spm
 #    chown system system /dev/spm
 
-#Gionee 20161026 huahy add for CR01564251 start
-    setprop MC_AUTH_TOKEN_PATH "/data/misc/gionee"
-#Gionee 20161026 huahy add for CR01564251 end
 
 on init
     # Refer to http://source.android.com/devices/tech/storage/index.html
@@ -230,7 +213,7 @@ service spm_script /system/bin/spm_loader
 #    group radio cache inet misc audio sdcard_r sdcard_rw log system
 #    oneshot
 #    disabled
-
+#
 #service ril-daemon-mtk /system/bin/mtkrild
 #    class core
 #    socket mrild stream 660 root radio
@@ -255,13 +238,6 @@ service spm_script /system/bin/spm_loader
 #    group radio cache inet misc audio sdcard_r sdcard_rw log system
 #    disabled
 #    oneshot
-
-#Gionee <zhouzq> <2016-02-20> modify for KPH begin
-    mkdir /data/app/mcRegistry 0775 system system
-
-    setprop MC_AUTH_TOKEN_PATH "/data/misc/gionee"
-    chmod 0775 /data/misc/gionee
-
-#Gionee <zhouzq> <2016-02-20> modify for KPH end
+#
 #on property:ril.rilproxy=1
 #    start ril-proxy

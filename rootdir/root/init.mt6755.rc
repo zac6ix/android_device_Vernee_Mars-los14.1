@@ -578,7 +578,16 @@ on post-fs-data
     chmod 0660 /dev/CAM_CAL_DRV
     chmod 0660 /dev/CAM_CAL_DRV1
     chmod 0660 /dev/CAM_CAL_DRV2
-    chmod 0660 /sys/devices/platform/battery/GN_Camera_State
+    chmod 0660 /dev/MAINAF
+    chmod 0660 /dev/MAINAF2
+    chmod 0660 /dev/SUBAF
+
+    chmod 0660 /dev/GAF001AF
+    chmod 0660 /dev/DW9714AF
+    chmod 0660 /dev/DW9763AF
+    chmod 0660 /dev/BU64244GWZAF
+    chmod 0660 /dev/LC898212AF
+    chmod 0660 /dev/BU64745GWZAF
 
     chown system camera /dev/camera-sysram
     chown system camera /dev/camera-isp
@@ -591,7 +600,16 @@ on post-fs-data
     chown system camera /dev/CAM_CAL_DRV
     chown system camera /dev/CAM_CAL_DRV1
     chown system camera /dev/CAM_CAL_DRV2
-    chown system camera /sys/devices/platform/battery/GN_Camera_State
+    chown system camera /dev/MAINAF
+    chown system camera /dev/MAINAF2
+    chown system camera /dev/SUBAF
+
+    chown system camera /dev/GAF001AF
+    chown system camera /dev/DW9714AF
+    chown system camera /dev/DW9763AF
+    chown system camera /dev/BU64244GWZAF
+    chown system camera /dev/LC898212AF
+    chown system camera /dev/BU64745GWZAF
 
     #MATV
     chmod 0660 /dev/MATV
@@ -1629,7 +1647,11 @@ on property:persist.service.operamax=0
 service kpoc_charger /system/bin/kpoc_charger
     class charger
 
-###########add for 3Gdongle
+# Fingerprint
+service etsd /system/bin/etsd
+    class late_start
+    user system
+    group system
 
 on boot
 #
@@ -1712,26 +1734,10 @@ service zpppd_gprs /system/bin/init.gprs-pppd
 
 #gionee mazuyu add for  fingerprint begin 
 #both fpc and goodix needed
-#service fingerprintd /system/bin/fingerprintd
-#          class late_start
-#          user system 
-#          group system
-
-# goodix fingerprint
-on fs
-    chown system system /dev/gx_fpd
-
-service gx_fpd /system/bin/gx_fpd
-    class main
-    user system
-    group system
-    seclabel u:r:goodixfingerprintd:s0
-
 service fingerprintd /system/bin/fingerprintd
-    class main
-    user system
-    group system
-    seclabel u:r:fingerprintd:s0
+          class late_start
+          user system 
+          group system
 
 service fp /system/bin/fpserver
     class main
