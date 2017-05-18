@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export DEVICE=PowerFiveMax
-export VENDOR=HighScreen
+export DEVICE=k11tc_a
+export VENDOR=vernee
 
 if [ $# -eq 0 ]; then
   SRC=adb
@@ -57,4 +57,4 @@ rm -rf $BASE/*
 #extract ../../$VENDOR/$DEVICE/proprietary-files-mtk.txt $BASE
 extract ../../$VENDOR/$DEVICE/proprietary-files.txt $BASE
 
-#./setup-makefiles.sh
+./setup-makefiles.sh

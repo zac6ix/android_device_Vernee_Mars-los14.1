@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DEVICE=PowerFiveMax
-VENDOR=HighScreen
+DEVICE=k11ta_a
+VENDOR=Bluboo
 
 OUTDIR=vendor/$VENDOR/$DEVICE
 MAKEFILE=../../../$OUTDIR/$DEVICE-vendor-blobs.mk
@@ -122,14 +122,6 @@ EOF
 (cat << EOF) > ../../../$OUTDIR/Android.mk
 LOCAL_PATH := \$(call my-dir)
 
-\$(info [Decker] copying DP Framework proprietary blobs)
-
-# Making symlinks in system.img 
-\$(shell ln -sf libMcGatekeeper.so \$(TARGET_OUT)/lib64/hw/gatekeeper.mt6755.so; \\
-	ln -sf libMcGatekeeper.so \$(TARGET_OUT)/lib64/hw/gatekeeper.gnbj6755_66_m.so; \\
-	ln -sf libMcGatekeeper.so \$(TARGET_OUT)/lib/hw/gatekeeper.mt6755.so; \\
-	ln -sf libMcGatekeeper.so \$(TARGET_OUT)/lib/hw/gatekeeper.gnbj6755_66_m.so; )
-
 #include \$(CLEAR_VARS)
 #LOCAL_MODULE := libdpframework
 #LOCAL_MODULE_OWNER := \$VENDOR
@@ -170,49 +162,5 @@ include \$(BUILD_PREBUILT)
 #LOCAL_MODULE_SUFFIX := .so
 #LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 #LOCAL_MODULE_PATH := \$(TARGET_OUT_SHARED_LIBRARIES)
-#include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE := Telegram+3.16.1
-LOCAL_SRC_FILES := user-apps/\$(LOCAL_MODULE).apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-#LOCAL_MODULE_OWNER := \$VENDOR
-LOCAL_MODULE_TAGS := optional
-#LOCAL_MODULE_PATH := \$(TARGET_OUT)/vendor/operator/app
-LOCAL_MODULE_PATH := \$(TARGET_OUT_VENDOR_APPS)
-#LOCAL_MODULE_PATH := \$(TARGET_OUT_DATA_APPS)
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE := Peel
-LOCAL_SRC_FILES := user-apps/\$(LOCAL_MODULE).apk
-LOCAL_MODULE_CLASS := APPS
-LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_CERTIFICATE := PRESIGNED
-#LOCAL_MODULE_OWNER := \$VENDOR
-LOCAL_MODULE_TAGS := optional
-#LOCAL_MODULE_PATH := \$(TARGET_OUT)/vendor/operator/app
-LOCAL_MODULE_PATH := \$(TARGET_OUT_VENDOR_APPS)
-#LOCAL_MODULE_PATH := \$(TARGET_OUT_DATA_APPS)
-include \$(BUILD_PREBUILT)
-
-#include \$(CLEAR_VARS)
-#LOCAL_MODULE := GFManager
-#LOCAL_SRC_FILES := user-apps/\$(LOCAL_MODULE).apk
-#LOCAL_MODULE_CLASS := APPS
-#LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-#LOCAL_CERTIFICATE := platform
-#LOCAL_MODULE_TAGS := optional
-#include \$(BUILD_PREBUILT)
-
-#include \$(CLEAR_VARS)
-#LOCAL_MODULE := FingerprintServiceExtension
-#LOCAL_SRC_FILES := user-apps/\$(LOCAL_MODULE).apk
-#LOCAL_MODULE_CLASS := APPS
-#LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-#LOCAL_CERTIFICATE := platform
-#LOCAL_MODULE_TAGS := optional
 #include \$(BUILD_PREBUILT)
 EOF
