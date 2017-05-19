@@ -72,9 +72,10 @@ chmod 0666 /dev/ttyMT0
 # mount different fs start
 
 on charger
-    mount ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system /system ro wait
-    start kpoc_charger
-    start servicemanager
+    mount ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system /system ro
+    chown root system /dev/kmsg
+    chmod 0666 /dev/kmsg
+    start fuelgauged
 
 on fs
     write /proc/bootprof "INIT:Mount_START"
@@ -578,16 +579,7 @@ on post-fs-data
     chmod 0660 /dev/CAM_CAL_DRV
     chmod 0660 /dev/CAM_CAL_DRV1
     chmod 0660 /dev/CAM_CAL_DRV2
-    chmod 0660 /dev/MAINAF
-    chmod 0660 /dev/MAINAF2
-    chmod 0660 /dev/SUBAF
-
-    chmod 0660 /dev/GAF001AF
-    chmod 0660 /dev/DW9714AF
-    chmod 0660 /dev/DW9763AF
-    chmod 0660 /dev/BU64244GWZAF
-    chmod 0660 /dev/LC898212AF
-    chmod 0660 /dev/BU64745GWZAF
+    chmod 0660 /sys/devices/platform/battery/GN_Camera_State
 
     chown system camera /dev/camera-sysram
     chown system camera /dev/camera-isp
@@ -600,16 +592,7 @@ on post-fs-data
     chown system camera /dev/CAM_CAL_DRV
     chown system camera /dev/CAM_CAL_DRV1
     chown system camera /dev/CAM_CAL_DRV2
-    chown system camera /dev/MAINAF
-    chown system camera /dev/MAINAF2
-    chown system camera /dev/SUBAF
-
-    chown system camera /dev/GAF001AF
-    chown system camera /dev/DW9714AF
-    chown system camera /dev/DW9763AF
-    chown system camera /dev/BU64244GWZAF
-    chown system camera /dev/LC898212AF
-    chown system camera /dev/BU64745GWZAF
+    chown system camera /sys/devices/platform/battery/GN_Camera_State
 
     #MATV
     chmod 0660 /dev/MATV
@@ -1591,7 +1574,6 @@ service fuelgauged /system/bin/fuelgauged
     class main
     user system
     group system
-    disabled
 
 service sn /system/bin/sn
     class late_start
@@ -1644,8 +1626,11 @@ on property:persist.service.operamax=1
 on property:persist.service.operamax=0
     stop OperaMaxSystem
 
-service kpoc_charger /system/bin/kpoc_charger
+# Charger mode
+service charger /sbin/healthd -c
     class charger
+    critical
+    seclabel u:r:healthd:s0
 
 # Fingerprint
 service etsd /system/bin/etsd
@@ -1739,10 +1724,14 @@ service fingerprintd /system/bin/fingerprintd
           user system 
           group system
 
+service gx_fpd /system/bin/gx_fpd
+    class late_start
+    user root
+    group root system
+
 service fp /system/bin/fpserver
     class main
-    user system
-    group system
+    user root
 # goodix fingerprint end
 
 #gionee mazuyu add for fingerprint  end

@@ -119,3 +119,5 @@
 
 #MTK In-House TEE
 /dev/ttyACM0              0660   radio      radio
+
+/dev/esfp0              0666   root       root
