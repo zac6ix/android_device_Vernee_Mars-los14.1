@@ -57,7 +57,7 @@ ro.kernel.zio=38,108,105,16
 # Disable dirty region for Mali
 debug.hwui.render_dirty_regions=false
 
-ro.sf.lcd_density=320
+ro.sf.lcd_density=460
 
 # performance
 ro.mtk_perf_simple_start_win=1
@@ -78,8 +78,10 @@ persist.sys.display.clearMotion=0
 fmradio.driver.enable=1
 
 # Fingerprint
-#ro.gn.fingerprint.ext=yes          
-#ro.gn.fingerprint.support=yes      
-#ro.gn.privatespace.fingerprint=yes 
-#ro.gn.three.finger.guestmode=yes   
-#sys.fingerprint.sensor.type=0      
+ro.gn.fingerprint.ext=yes          
+ro.gn.fingerprint.support=yes      
+ro.gn.privatespace.fingerprint=yes 
+ro.gn.three.finger.guestmode=yes   
+sys.fingerprint.sensor.type=0 
+
+    

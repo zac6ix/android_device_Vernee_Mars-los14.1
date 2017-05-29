@@ -12,7 +12,7 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/otp       0640    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvram     0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/para      0660    root    system
-/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/logo      0640    root    system
+/dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/logo      0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/frp       0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/ppl       0660    root    system
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/md1img    0660    root    system
@@ -21,7 +21,7 @@
 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/md3img    0660    root    system
 
 # OTP
-/dev/otp                  0660   system     system
+/dev/otp                 0660 system system
 
 # Connectivity
 /dev/stpwmt               0660   system     system
@@ -52,9 +52,6 @@
 
 # Trusty driver
 /dev/trusty-ipc-dev0      0660   system     keystore
-
-# IRTX
-/dev/irtx                 0660   root       system
 
 # add the read write right of ttyUSB*
 /dev/bus/usb/*     	  0660   root       usb

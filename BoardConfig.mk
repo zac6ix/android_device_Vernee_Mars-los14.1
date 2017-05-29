@@ -160,3 +160,6 @@ TARGET_LDPRELOAD += libxlog.so:libmtk_symbols.so # for symbols in mtkaudio.cpp +
 
 #BOARD_USES_LEGACY_MTK_AV_BLOB := true
 #TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+
+# Media
+#TARGET_OMX_LEGACY_RESCALING := true

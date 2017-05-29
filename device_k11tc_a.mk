@@ -339,6 +339,3 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     tinymix
 
-PRODUCT_PACKAGES += \
-    GFManager \
-    FingerprintServiceExtension
